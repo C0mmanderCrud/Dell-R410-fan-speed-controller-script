@@ -41,6 +41,10 @@ IPMIPW=yourpassword
 
 #Oneline command to get uptimes to A, B & C. 
 # Friend wrote this oneliner, need to write explanation what it does and why it does it.
+# LC_All=C uptime is getting the average CPU load over 1, 5 and 15 minutes and places them in 
+# Variables a b and c after egrep has stripped out the leading infomation like the time and users online
+# Cut -d then splits this into chunks to be fed into the variables
+# Sed then replaces evrey tilde ~ with a space
 read A B C <<<$(LC_ALL=C uptime | egrep -o 'average:.+' | cut -d : -f 2- | sed 's/,//g;')
 #convert float numbers to integers by removing everything after . dot
 A=${A%.*}
